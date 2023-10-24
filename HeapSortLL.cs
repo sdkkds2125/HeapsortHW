@@ -39,8 +39,9 @@ namespace HeapsortHW
             while (head.Right != null && head.Left != null) 
             {
                 depth = maxDepth(head);
-                Node temp = getAndRemoveNodeAtXDepth(head, 0, depth);
-                //swap(head,)
+                Node temp = new Node(getAndRemoveNodeAtXDepth(head, 0, depth));
+                swap(head, temp);
+                heapifyForLL(head);
             } 
         }
 
@@ -119,27 +120,29 @@ namespace HeapsortHW
 
         private int getAndRemoveNodeAtXDepth(Node root, int currDepth, int wantedDepth)
         {
-            int data;
-            if (root == null)
-            {
-                return -int.MaxValue;
-            }
+            
+     
             // If the wanted level and current level 
             // are same delete that node and return its data in a new one
-            else if (currDepth == wantedDepth)
+            if (currDepth == wantedDepth && root != null)
             {
-                data = root.Data;
+                int data = root.Data;
                 root = null;
                 return data;
             }
             
-            else
+            else 
             {
-                // keep going down the left and right subtrees 
-                getAndRemoveNodeAtXDepth(root.Left, currDepth + 1, wantedDepth);
-                getAndRemoveNodeAtXDepth(root.Right, currDepth + 1, wantedDepth);
-                return data + 0;
+                if (root != null)
+                {
+                    // keep going down the left and right subtrees 
+                    getAndRemoveNodeAtXDepth(root.Left, currDepth + 1, wantedDepth);
+                    getAndRemoveNodeAtXDepth(root.Right, currDepth + 1, wantedDepth);
+                }
+                return -999999; 
+
             }
+        
         }
 
         private void heapifyForLL(Node root)

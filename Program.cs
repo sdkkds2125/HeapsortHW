@@ -68,9 +68,11 @@ public class HeapSortArr
 }
 
 
+//I peiced this one together from online but tbh I don't fully understand it though it
+//works perfectly so I made the other one in the separate file myself from scratch so that I understand
+//but it still has some bugs I haven't had time to work out
 
-
-class Program
+class HeapSortLL2
 {
     static int Nodes;
     static Node First, Current;
